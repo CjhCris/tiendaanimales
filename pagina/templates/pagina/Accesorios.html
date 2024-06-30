@@ -107,7 +107,6 @@
         {% for producto in productos %}
         <div class="item">
             <span class="titulo-item">{{ producto.nombre_producto }}</span>
-            <p>ID: {{ producto.id_producto }}</p>
             {% if producto.foto %}
             <img src="{{ producto.foto.url }}" alt="{{ producto.nombre_producto }}" class="img-item">
             {% endif %}
