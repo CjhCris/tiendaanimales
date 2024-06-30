@@ -615,3 +615,67 @@ button {
     border: none;
     background: none;
 }
+
+/* Estilos para los elementos dentro del formulario */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    overflow: hidden; /* Oculta la barra de desplazamiento */
+}
+
+.form-container h2 {
+    color: #333;
+}
+
+.form-container form {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.form-container pre {
+    margin-bottom: 10px;
+}
+
+/* Reducir tamaño de los input y select */
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"],
+.form-container select,
+.form-container input[type="file"],
+.form-container input[type="number"] {
+    width: calc(75% - 24px); /* Ajusta el ancho para compensar el padding y border */
+    padding: 10px; /* Ajusta el padding según sea necesario */
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px; /* Ajusta el tamaño de la fuente según sea necesario */
+}
+
+.form-container input[type="submit"] {
+    background-color: #ffa507;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block; /* Hacer el botón un bloque para ocupar toda la anchura disponible */
+    margin: 0 auto; /* Centrar horizontalmente */
+}
+
+.form-container input[type="submit"]:hover {
+    background-color: #ffa507;
+}
+
+.form-container a {
+    display: inline-block;
+    margin-top: -5%;
+    text-decoration: none;
+    color: #007bff;
+}
+
