@@ -50,10 +50,6 @@ def crud(request):
     context = {'productos': productos}
     return render(request, 'pagina/admin_list.html', context)
 
-from django.shortcuts import render, redirect
-from .forms import RegistroForm
-from .models import Categoria, Producto
-
 def productosAdd(request):
     if request.method == "POST":
         # Obtener datos del formulario
@@ -168,3 +164,6 @@ def productosUpdate(request):
         productos = Producto.objects.all()
         context = {'productos': productos}
         return render(request, 'pagina/admin_list.html', context)
+
+def inicio(request):
+    return render(request, 'pagina/Registro.html')
