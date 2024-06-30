@@ -11,11 +11,14 @@
     <link rel="icon" href="{% static 'pagina/img/Machape.png' %}">
     <style>
         button, input, optgroup, select, textarea {
-        margin: 0;
-        font-family: inherit;
-        font-size: inherit;
-        line-height: inherit;
-        margin: auto;
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            margin: auto;
+        }
+        .product-card {
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -23,88 +26,79 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid d-flex align-items-center justify-content-between">
-          
-          <div class="spinner">
-            <img src="{% static 'pagina/img/Machape.png' %}" alt="Pedropizza" class="pedro">
-          </div>
-          
-          <a class="navbar-brand me-auto" href="{% url 'index' %}">
-            <img src="{% static 'pagina/img/Pedro’s Logo.png' %}" alt="" class="logo">
-          </a>
-    
-          <!-- Toggler button for mobile -->
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-    
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mb-2 mb-lg-0">
-              <li class="nav-item d-flex align-items-center">
-                <img class="icono-elemento me-2" src="{% static 'pagina/img/accesorios.png' %}" alt="">
-                <a class="nav-link text-start" href="{% url 'Accesorios' %}">Accesorios</a>
-              </li>
-              <li class="nav-item d-flex align-items-center">
-                <img class="icono-elemento me-2" src="{% static 'pagina/img/comida.png' %}" alt="">
-                <a class="nav-link text-start" href="{% url 'Comidas' %}">Comidas</a>
-              </li>
-              <li class="nav-item d-flex align-items-center">
-                <img class="icono-elemento me-2" src="{% static 'pagina/img/juguetes.png' %}" alt="">
-                <a class="nav-link text-start" href="{% url 'Juguetes' %}">Juguetes</a>
-              </li>
-              <li class="nav-item d-flex align-items-center">
-                <img class="icono-elemento me-2" src="{% static 'pagina/img/snacks.png' %}" alt="">
-                <a class="nav-link text-start" href="{% url 'Snacks' %}">Snacks</a>
-              </li>
-            </ul>
-          </div>
-    
-          
+            <div class="spinner">
+                <img src="{% static 'pagina/img/Machape.png' %}" alt="Pedropizza" class="pedro">
+            </div>
+            <a class="navbar-brand me-auto" href="{% url 'index' %}">
+                <img src="{% static 'pagina/img/Pedro’s Logo.png' %}" alt="" class="logo">
+            </a>
+            <!-- Toggler button for mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item d-flex align-items-center">
+                        <img class="icono-elemento me-2" src="{% static 'pagina/img/accesorios.png' %}" alt="">
+                        <a class="nav-link text-start" href="{% url 'Accesorios' %}">Accesorios</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <img class="icono-elemento me-2" src="{% static 'pagina/img/comida.png' %}" alt="">
+                        <a class="nav-link text-start" href="{% url 'Comidas' %}">Comidas</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <img class="icono-elemento me-2" src="{% static 'pagina/img/juguetes.png' %}" alt="">
+                        <a class="nav-link text-start" href="{% url 'Juguetes' %}">Juguetes</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <img class="icono-elemento me-2" src="{% static 'pagina/img/snacks.png' %}" alt="">
+                        <a class="nav-link text-start" href="{% url 'Snacks' %}">Snacks</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </nav>
-      <br>
-        <h1>Lista de Productos</h1>
-     <br>
-     
-     <button type="button">
-        <a href="{% url 'productosAdd' %}"> Agregar </a>
-     </button>
-
-     <div id="idMensajes">
-        {% if mensaje %}
-            {{mensaje}}
-        {% endif %}
-     </div>
-
-        <table>
-            {% if productos %}
-                <br>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Categoria</th>
-                <th>Modificar</th>
-                <th>Eliminar</th>
-                {% for x in productos %}
-                <tr>
-                    <td> {{ x.id_producto }}
-                    <td> {{ x.nombre_producto }}
-                    <td> {{ x.precio }}
-                    <td> {{ x.id_categoria }}
-                    <td> <a href="{% url 'productos_findEdit' pk=x.id_producto %}">Modificar</a>
-                    <td> <a href="{% url 'productos_del' pk=x.id_producto %}">Eliminar</a>
-                </tr>
-            {% endfor %}
-        {% endif %}
-        
-    </table>
+    </nav>
 
     <br>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $("#idMensajes").delay(2000).fadeOut("slow");
-    });
-</script>
+    <h1>Lista de Productos</h1>
+    <br>
+    <button type="button" class="btn btn-primary mb-3">
+        <a href="{% url 'productosAdd' %}" class="text-white text-decoration-none">Agregar</a>
+    </button>
+
+    <div id="idMensajes">
+        {% if mensaje %}
+            {{ mensaje }}
+        {% endif %}
+    </div>
+
+    <div id="productos-contenedor" class="container">
+        <div class="row">
+            {% if productos %}
+                {% for producto in productos %}
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ producto.nombre_producto }}</h5>
+                            <p class="card-text">Precio: ${{ producto.precio }}</p>
+                            <p class="card-text">Categoría: {{ producto.id_categoria }}</p>
+                            <a href="{% url 'productos_findEdit' pk=producto.id_producto %}" class="btn btn-warning">Modificar</a>
+                            <a href="{% url 'productos_del' pk=producto.id_producto %}" class="btn btn-danger">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <br>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#idMensajes").delay(2000).fadeOut("slow");
+        });
+    </script>
 
 </body>
 </html>
