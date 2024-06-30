@@ -7,7 +7,6 @@ urlpatterns = [
     path ('Comidas', views.Comidas, name='Comidas'),
     path ('Juguetes', views.Juguetes, name='Juguetes'),
     path ('Snacks', views.Snacks, name='Snacks'),
-    path ('Registro/', views.Registro, name='Registro'),    
     path ('crud', views.crud, name='crud'),
     path ('productosAdd', views.productosAdd, name='productosAdd'),
     path ('productos_del/<str:pk>', views.productos_del, name='productos_del'),

@@ -1,6 +1,4 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .forms import RegistroForm
+from django.shortcuts import render
 from .models import Categoria, Producto
 
 def index(request):
@@ -10,7 +8,6 @@ def index(request):
 def Accesorios(request):
     accesorios = Categoria.objects.get(categoria='Accesorios')
     productos_accesorios = Producto.objects.filter(id_categoria=accesorios)
-
     return render(request, 'pagina/Accesorios.html', {'productos': productos_accesorios})
 
 def Comidas(request):
@@ -27,18 +24,6 @@ def Snacks(request):
     snack = Categoria.objects.get(categoria='Snack')
     productos_snack = Producto.objects.filter(id_categoria=snack)
     return render(request, 'pagina/Snacks.html', {'productos': productos_snack})
-
-def Registro(request):
-    if request.method == 'POST':
-        form = RegistroForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, '¡Ya se registró!')  # Mensaje de éxito
-            return redirect('Accesorios')  # Redirige a la página de Accesorios o donde desees
-    else:
-        form = RegistroForm()
-    
-    return render(request, 'pagina/Registro.html', {'form': form})
 
 def admin(request):
     productos = Producto.objects.all()
