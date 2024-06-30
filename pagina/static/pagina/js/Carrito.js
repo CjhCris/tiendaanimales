@@ -1,7 +1,7 @@
 // Variable que mantiene el estado visible del carrito
 var carritoVisible = false;
 
-// Esperamos que todos los elementos de la página cargen para ejecutar el script
+// Esperamos que todos los elementos de la página carguen para ejecutar el script
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
 } else {
@@ -12,7 +12,7 @@ function ready() {
     // Cargar el carrito desde el almacenamiento local
     cargarCarrito();
 
-    // Agregremos funcionalidad a los botones eliminar del carrito
+    // Agregamos funcionalidad a los botones eliminar del carrito
     var botonesEliminarItem = document.getElementsByClassName('btn-eliminar');
     for (var i = 0; i < botonesEliminarItem.length; i++) {
         var button = botonesEliminarItem[i];
@@ -61,7 +61,7 @@ function agregarAlCarritoClicked(event) {
     var button = event.target;
     var item = button.parentElement;
     var titulo = item.getElementsByClassName('titulo-item')[0].innerText;
-    var precio = item.getElementsByClassName('precio-item')[0].innerText;
+    var precio = item.getElementsByClassName('precio-item')[0].innerText.replace('Precio: $', '').replace(',', '');
     var imagenSrc = item.getElementsByClassName('img-item')[0].src;
     console.log(imagenSrc);
 
@@ -84,7 +84,7 @@ function hacerVisibleCarrito() {
 // Función que agrega un item al carrito
 function agregarItemAlCarrito(titulo, precio, imagenSrc) {
     var item = document.createElement('div');
-    item.classList.add = ('item');
+    item.classList.add('item');
     var itemsCarrito = document.getElementsByClassName('carrito-items')[0];
 
     // Controlamos que el item que intenta ingresar no se encuentre en el carrito
@@ -191,15 +191,14 @@ function actualizarTotalCarrito() {
     var carritoContenedor = document.getElementsByClassName('carrito')[0];
     var carritoItems = carritoContenedor.getElementsByClassName('carrito-item');
     var total = 0;
+
     // Recorremos cada elemento del carrito para actualizar el total
     for (var i = 0; i < carritoItems.length; i++) {
         var item = carritoItems[i];
         var precioElemento = item.getElementsByClassName('carrito-item-precio')[0];
-        // Quitamos el símbolo peso y el punto de milesimos.
-        var precio = parseFloat(precioElemento.innerText.replace('$', '').replace('.', ''));
-        var cantidadItem = item.getElementsByClassName('carrito-item-cantidad')[0];
-        var cantidad = cantidadItem.value;
-        total = total + (precio * cantidad);
+        var precio = parseFloat(precioElemento.innerText.replace('$', '').replace(',', ''));
+        var cantidadItem = item.getElementsByClassName('carrito-item-cantidad')[0].value;
+        total += precio * cantidadItem;
     }
     total = Math.round(total * 100) / 100;
 
@@ -209,29 +208,37 @@ function actualizarTotalCarrito() {
     guardarCarrito();
 }
 
-// Función para guardar el carrito en el almacenamiento local
+// Guardar el carrito en el almacenamiento local
 function guardarCarrito() {
-    var carritoItemsHTML = document.getElementsByClassName('carrito-items')[0].innerHTML;
-    localStorage.setItem('carrito', carritoItemsHTML);
+    var carritoItems = document.getElementsByClassName('carrito-item');
+    var carritoData = [];
+
+    for (var i = 0; i < carritoItems.length; i++) {
+        var item = carritoItems[i];
+        var titulo = item.getElementsByClassName('carrito-item-titulo')[0].innerText;
+        var precio = item.getElementsByClassName('carrito-item-precio')[0].innerText.replace('$', '').replace(',', '');
+        var cantidad = item.getElementsByClassName('carrito-item-cantidad')[0].value;
+        var imagenSrc = item.getElementsByTagName('img')[0].src;
+
+        carritoData.push({
+            titulo: titulo,
+            precio: precio,
+            cantidad: cantidad,
+            imagenSrc: imagenSrc
+        });
+    }
+
+    localStorage.setItem('carritoData', JSON.stringify(carritoData));
 }
 
-// Función para cargar el carrito desde el almacenamiento local
+// Cargar el carrito desde el almacenamiento local
 function cargarCarrito() {
-    var carritoItemsHTML = localStorage.getItem('carrito');
-    if (carritoItemsHTML) {
-        document.getElementsByClassName('carrito-items')[0].innerHTML = carritoItemsHTML;
+    var carritoData = JSON.parse(localStorage.getItem('carritoData'));
+
+    if (carritoData) {
+        for (var i = 0; i < carritoData.length; i++) {
+            var item = carritoData[i];
+            agregarItemAlCarrito(item.titulo, item.precio, item.imagenSrc);
+        }
     }
 }
-
-
-function hacerVisibleCarrito() {
-    carritoVisible = true;
-    var carrito = document.getElementsByClassName('carrito')[0];
-    carrito.style.marginRight = '0';
-    carrito.style.opacity = '1';
-
-    var items = document.getElementsByClassName('contenedor-items')[0];
-    items.style.width = '60%';
-    actualizarTotalCarrito()
-}
-
