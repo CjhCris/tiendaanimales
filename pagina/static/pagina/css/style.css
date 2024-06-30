@@ -681,3 +681,44 @@ button {
     color: #007bff;
 }
 
+/* registro_usuario */
+
+/* Estilos para el formulario de registro de usuario */
+#registro-usuario {
+    margin-top: 50px; /* Espacio superior */
+}
+
+#registro-usuario .card {
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra ligera */
+}
+
+#registro-usuario .card-body {
+    padding: 40px; /* Espaciado interno */
+}
+
+#registro-usuario .card-title {
+    margin-bottom: 30px; /* Espacio inferior del título */
+    font-size: 2rem; /* Tamaño del título */
+}
+
+#registro-usuario form {
+    max-width: 100%; /* Ancho máximo del formulario */
+}
+
+#registro-usuario .form-control {
+    margin-bottom: 20px; /* Espacio inferior de los campos */
+    border-radius: 8px; /* Bordes redondeados para los campos */
+}
+
+#registro-usuario button[type="submit"] {
+    width: 100%; /* Ancho completo para el botón de enviar */
+    margin-top: 20px; /* Espacio superior del botón */
+}
+
+#registro-usuario .alert-info {
+    margin-top: 20px; /* Espacio superior de la alerta */
+}
+
+
+
