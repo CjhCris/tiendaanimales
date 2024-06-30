@@ -720,5 +720,35 @@ button {
     margin-top: 20px; /* Espacio superior de la alerta */
 }
 
+label {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+input {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    width: 100%; /* Todos los inputs ocupan el 100% del ancho disponible */
+    box-sizing: border-box; /* Incluye el padding y border dentro del ancho */
+    padding: 5px; /* Espaciado interno */
+    margin-bottom: 10px; /* Espacio entre inputs */
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 768px) {
+    input {
+        padding-right: 10%; /* Ajuste de padding */
+    }
+}
+
+/* Estilos para organizar en columnas */
+.formulario-columnas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas automáticas, mínimo 250px y máximo 1fr */
+    gap: 20px; /* Espacio entre columnas */
+}
+
 
 
