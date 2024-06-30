@@ -12,5 +12,5 @@ urlpatterns = [
     path ('productos_del/<str:pk>', views.productos_del, name='productos_del'),
     path ('productos_findEdit/<str:pk>', views.productos_findEdit, name='productos_findEdit'),
     path ('productosUpdate', views.productosUpdate, name='productosUpdate'),
-    path('registro/', views.usuario, name='registro'),
+    path ('registro/', views.usuario, name='registro'),
 ]
