@@ -19,3 +19,22 @@ class Producto(models.Model):
         return str(self.nombre_producto)
     class Meta:      
         ordering = ['id_producto']
+
+
+class Usuario(models.Model):
+    id_usuario = models.AutoField(primary_key=True)
+    usuario = models.CharField(max_length=15)
+    nombre = models.CharField(max_length=20)
+    apPaterno = models.CharField(max_length=20)
+    apMaterno = models.CharField(max_length=20)
+    correo = models.EmailField()
+    rut = models.CharField(max_length=15)
+    contraseña = models.CharField(max_length=20)
+    confirmar_contraseña = models.CharField(max_length=20)
+    edad = models.IntegerField()
+    activo = models.BooleanField(default=True)
+
+    def __str__(self):
+        return str(self.usuario)
+    class Meta:
+        ordering = ['id_usuario']

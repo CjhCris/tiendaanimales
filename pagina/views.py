@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Categoria, Producto
+from .forms import UsuarioForm
 
 def index(request):
     context = {}
@@ -152,3 +153,23 @@ def productosUpdate(request):
 
 def inicio(request):
     return render(request, 'pagina/Registro.html')
+
+
+def usuario(request):
+    data= {
+        'form': UsuarioForm()
+    }
+
+    if request.method == 'POST':
+        formulario = UsuarioForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            data["mensaje"] = "Usuario registrado"
+        
+        else :
+            data["form"] = formulario
+            data["mensaje"] = "No se ha podido registrar, intente nuevamente"
+
+        
+
+    return render(request, 'pagina/registro.html', data)
