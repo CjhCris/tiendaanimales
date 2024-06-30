@@ -26,7 +26,6 @@ class Usuario(models.Model):
     usuario = models.CharField(max_length=15)
     nombre = models.CharField(max_length=20)
     apellido = models.CharField(max_length=20)
-    apMaterno = models.CharField(max_length=20)
     correo = models.EmailField()
     rut = models.CharField(max_length=15)
     contraseña = models.CharField(max_length=20)
