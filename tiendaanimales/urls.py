@@ -18,13 +18,11 @@ from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
-from pagina import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('pagina/', include ('pagina.urls')),
     path('productos/', include('django.contrib.staticfiles.urls')),
-    path('', views.inicio, name='inicio'), 
 ]
 
 if settings.DEBUG:
